@@ -41,56 +41,62 @@
                 </div>
             </div>
         </nav>-->
-    </header><br>
-    <div class="container">
+    </header>
+    <div class="container-fluid">
         <main>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6" id="imagenLogo">
                     <img src="/Imagenes/AK NEGRA.png" class="img-fluid" alt="Placeholder Image">
                 </div>
-                <div class="col-md-6"><br>
+                <div class="col-md-6" id="login"><br>
                     <div class="card">
-                        <div class="card-header" style="text-align: center;">INICIAR SESIÓN</div>
+                        <div class="card-header" style="text-align: center; color: green;"><b>INICIAR SESIÓN</b></div>
                         <div class="card-body">
-                            <div class="mb-3">
-                                <label for="correoE" class="form-label">Correo electrónico:</label>
-                                <input type="email" name="correoE" id="correoE" class="form-control"
-                                    placeholder="Ingrese su Correo electrónico" aria-describedby="helpId" />
+                            <form class="row g-2">
+                                <div class="mb-3">
+                                    <label for="correoE" class="form-label" style="color: blue">Correo
+                                        electrónico:</label>
+                                    <input type="email" name="correoE" id="correoE" class="form-control"
+                                        placeholder="Ingrese su Correo electrónico" aria-describedby="helpId" required>
+                                    <div class="invalid-feedback">
+                                        Llenar el campo
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password" class="form-label" style="color: blue">Contraseña:</label>
+                                    <input type="password" name="password" id="password" class="form-control"
+                                        placeholder="Ingrese su Contraseña" aria-describedby="helpId" required>
+                                    <div class="invalid-feedback">
+                                        Llenar el campo
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="perfil" class="form-label" style="color: blue">Perfil:</label>
+                                    <select id="perfil" name="perfil" class="form-control-perfil" required>
+                                        <option value="1">Proveedor</option>
+                                        <option value="2">Cliente</option>
+                                        <option value="2">Administrador</option>
+                                    </select><br>
+                                </div>
+                                <div class="col-12">
+                                    <center><button onclick="location.href='/principal'" class="btn btn-primary"
+                                            style="justify-content: center;" type="submit">Iniciar Sesion</button>
 
-                            </div>
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Contraseña:</label>
-                                <input type="password" name="" id="" class="form-control"
-                                    placeholder="Ingrese su Contraseña" aria-describedby="helpId" />
+                                    </center><br>
+                                </div>
 
-                            </div>
-                            <hr>
-                            <div>
-                                <label for="perfil" class="form-label">Perfil:</label>
-                                <select id="perfil" name="perfil" class="form-control-perfil">
-                                    <option value="1">Proveedor</option>
-                                    <option value="2">Cliente</option>
-                                    <option value="2">Administrador</option>
-                                </select>
-                            </div>
-
+                            </form>
                         </div>
                         <div class="card-footer text-muted"><br>
-                            <center><a href="/principal" class="Boton-IniciarSesion">Iniciar Sesion</a>
-                                <hr>
-                            </center>
                             <p>Olvidaste tu contraseña <a href="/recuperar_contra">Clic Aquí</a></p>
                             <p>Aun no tienes una cuenta? <a href="/registro">Registrate aqui</a></p>
-
                         </div>
                     </div>
                 </div>
             </div>
         </main>
     </div>
-    <footer>
-        <!-- place footer here -->
-    </footer>
+
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
