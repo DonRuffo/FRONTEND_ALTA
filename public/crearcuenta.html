@@ -53,10 +53,11 @@
                             <form class="row g-2">
                                 <div>
                                     <label for="perfil" class="form-label" style="color:blue">Perfil: </label>
-                                    <span class="text-muted" style="font-size: small;"> (Elije tu perfil de registro)</span>
+                                    <span class="text-muted" style="font-size: small;"> (Elije tu perfil de
+                                        registro)</span>
                                     <select id="perfil" name="perfil" class="form-control-perfil">
-                                        <option value="1">Cliente</option>
-                                        <option value="2">Proveedor</option>
+                                        <option value="Cliente">Cliente</option>
+                                        <option value="Proveedor">Proveedor</option>
                                     </select>
                                 </div><br>
                                 <div class="col-md-6">
@@ -89,28 +90,10 @@
                                     <input type="password" name="password" id="password" class="form-control"
                                         placeholder="Ingrese su Contraseña" aria-describedby="passwordHelp" />
                                 </div>
-                                <div class="mb-3">
-                                    <label class="form-label" style="color:blue">Género:</label><br>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="gender" id="male"
-                                            value="male">
-                                        <label class="form-check-label" for="male">Masculino</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="gender" id="female"
-                                            value="female">
-                                        <label class="form-check-label" for="female">Femenino</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="gender" id="other"
-                                            value="other">
-                                        <label class="form-check-label" for="other">Otro</label>
-                                    </div>
-                                </div>
 
                                 <div class="col-md-6 boton">
-                                    <button type="submit" class="btn btn-secondary"
-                                        style="justify-content: center;">Crear Cuenta</button>
+                                    <button type="button" class="btn btn-secondary" style="justify-content: center;"
+                                        onclick="registro()">Crear Cuenta</button>
                                 </div>
                                 <div class="col-md-6 text-muted" id="linkLogin">
                                     <p>¿Ya tienes una cuenta? <a href="/login">Clic aquí</a></p>
@@ -134,7 +117,74 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
         crossorigin="anonymous"></script>
+    <script>
+        const registro = async () => {
+            // Obtener valores del formulario
+            const perfil = document.getElementById('perfil').value;
+            const nombre = document.getElementById('firstName').value;
+            const apellido = document.getElementById('lastName').value;
+            const direccion = document.getElementById('direccion').value;
+            const telefono = document.getElementById('telefono').value;
+            const email = document.getElementById('email').value;
+            const contrasenia = document.getElementById('password').value;
+
+            // Validar que todos los campos requeridos estén completos
+            if (!nombre || !apellido || !direccion || !telefono || !email || !contrasenia) {
+                alert("Por favor, completa todos los campos.");
+                return;
+            }
+
+            // Determinar URL según el perfil seleccionado
+            let url;
+            if (perfil === "Cliente") {
+                url = "https://apialtakassa1502.vercel.app/api/registroCliente";
+            } else if (perfil === "Proveedor") {
+                url = "https://apialtakassa1502.vercel.app/api/registroProveedor";
+
+            } else {
+                alert("Selecciona un perfil válido.");
+                return;
+            }
+
+            // Crear el cuerpo de la solicitud
+            const datos = {
+                nombre,
+                apellido,
+                direccion,
+                telefono,
+                email,
+                contrasenia
+            };
+
+            try {
+                // Hacer la solicitud POST
+                const response = await fetch(url, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(datos),
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Error en el registro: ${response.statusText}`);
+                }
+
+                const resultado = await response.json();
+                console.log("Registro exitoso:", resultado);
+                alert("Registro exitoso.");
+            } catch (error) {
+                console.log("Error:", error);
+                alert("Hubo un error al realizar el registro.");
+            }
+        };
+
+    </script>
     <?xml version='1.0' encoding='utf-8'?>
 </body>
 
 </html>
+
+<!--
+https://apialtakassa1502.vercel.app/
+-->
