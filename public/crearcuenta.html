@@ -86,7 +86,7 @@
                                         placeholder="Ingrese su Correo Electrónico" aria-describedby="emailHelp" />
                                 </div>
                                 <div class="col-md-12">
-                                    <label for="password" class="form-label" style="color:blue">Password:</label>
+                                    <label for="password" class="form-label" style="color:blue">Contraseña:</label>
                                     <input type="password" name="password" id="password" class="form-control"
                                         placeholder="Ingrese su Contraseña" aria-describedby="passwordHelp" />
                                 </div>
@@ -97,7 +97,6 @@
                                 <div class="col-md-6 text-muted" id="linkLogin">
                                     <p>¿Ya tienes una cuenta? <a href="/login">Clic aquí</a></p>
                                 </div>
-
                             </form>
                         </div>
                     </div>
@@ -136,9 +135,9 @@
             // Determinar URL según el perfil seleccionado
             let url;
             if (perfil === "Cliente") {
-                url = "https://apialtakassa1502.vercel.app/api/registroCliente";
+                url = "http://localhost:5000/api/registroCliente";
             } else if (perfil === "Proveedor") {
-                url = "https://apialtakassa1502.vercel.app/api/registroProveedor";
+                url = "http://localhost:5000/api/registroProveedor";
 
             } else {
                 alert("Selecciona un perfil válido.");
@@ -162,19 +161,14 @@
                     headers: {
                         "Content-Type": "application/json"
                     },
-                    body: JSON.stringify(datos),
+                    body: JSON.stringify(datos)
                 });
-
-                if (!response.ok) {
-                    throw new Error(`Error en el registro: ${response.statusText}`);
-                }
-
-                const resultado = await response.json();
-                console.log("Registro exitoso:", resultado);
+                const resultado = await response.json()
+                console.log("Registro exitoso:", resultado)
                 alert("Registro exitoso.");
             } catch (error) {
-                console.log("Error:", error);
-                alert("Hubo un error al realizar el registro.");
+                console.log("Error:", error)
+                alert("Hubo un error al realizar el registro.")
             }
         };
 
@@ -186,4 +180,5 @@
 
 <!--
 https://apialtakassa1502.vercel.app/
+http://localhost:5000/
 -->

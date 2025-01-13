@@ -50,9 +50,20 @@ const controladorAcceso = async(req, res) =>{
     }
 }
 
+const controladorPaginaConfirmar = async(req, res) => {
+    try{
+        const consulta = await paginas.confirmar()
+        return res.status(200).sendFile(consulta) 
+    }catch(error){
+        console.log(error)
+        res.status(404).send('Error en la obtención de la página')
+    }
+}
+
 export {controladorInicio,
     controladorRecuperarContra,
     controladorLogin,
     controladorAcceso,
-    controladorCrearCuenta
+    controladorCrearCuenta,
+    controladorPaginaConfirmar
 }

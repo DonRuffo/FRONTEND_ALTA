@@ -23,6 +23,10 @@ const paginas={
     async acceso(){
         const paginaAcceso = path.join(__dirname, '..', '..', 'public', 'acceso.html')
         return paginaAcceso
+    },
+    async confirmar(){
+        const paginaConfirmar = path.join(__dirname, '..', '..', 'public', 'confirmar.html')
+        return paginaConfirmar
     }
 }
 
